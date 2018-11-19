@@ -4,17 +4,21 @@
 
 @section Styles {
     <link href="~/css/Index.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 }
 
-<h1 class="center">Online E-Club</h1>
+<h1 class="center eclubfont">Online E-Club</h1>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 center">
         <div class="col-lg-6">
-            <input type="button" class="btn btn-lg" value="Login" onclick="location.href='@Url.Action("Login", "Identity/Account")'" />
+            <input type="button" class="btn btn-lg eclubfont" value="Login" onclick="location.href='@Url.Action("Login", "Identity/Account")'" />
         </div>
         <div class="col-lg-6">
-            <input type="button" class="btn btn-lg" value="Register" onclick="location.href='@Url.Action("Register", "Identity/Account")'" />
+            <input type="button" class="btn btn-lg eclubfont" value="Register" onclick="location.href='@Url.Action("Register", "Identity/Account")'" />
         </div>
     </div>
+</div>
+<div id="features">
+    <h1 class="eclubfont center">Features</h1>
 </div>
