@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row" style="margin-top: 20px;">
+    <div class="col-xs-offset-2 col-xs-8 col-sm-offset-4 col-sm-4">
+        <input class="form-control" type="text" placeholder="Search" style="text-align: center;" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12" style="border-bottom: 1px solid black;">
+        <h3>
+            My Groups&nbsp;&nbsp;&nbsp;<a asp-controller="Group" asp-action="Create">
+                <i class="far fa-plus-square" style="color: green;"></i>
+            </a>
+        </h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12" id="GroupList">
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var Groups = [];
+
+        for (var i = 0; i < 10; i++) {
+            var group = {};
+            group.GroupID = i;
+            group.GroupName = "Group Name" + i;
+            group.CategoryID = i;
+            group.ContentID = i;
+            group.MemberMin = 0;
+            group.MemberLimit = 20;
+
+            Groups.push(group);
+        }
+
+        $(document).ready(function () {
+            GroupListRender();
+        });
+
+        function GroupListRender() {
+            var html = "";
+
+            $.each(Groups, function (index, value) {
+                html += "<div><h4>" + value.GroupName + "</h4></div>";
+            });
+
+            $("#GroupList").html(html);
+        }
+    </script>
+}
