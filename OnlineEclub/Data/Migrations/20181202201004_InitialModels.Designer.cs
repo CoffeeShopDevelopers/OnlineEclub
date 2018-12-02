@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineEclub.Data;
 
 namespace OnlineEclub.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181202201004_InitialModels")]
+    partial class InitialModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,57 +186,6 @@ namespace OnlineEclub.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnlineEclub.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CategoryTitle");
-
-                    b.HasKey("CategoryID");
-
-                    b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("OnlineEclub.Models.Content", b =>
-                {
-                    b.Property<int>("ContentID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ContentTitle");
-
-                    b.HasKey("ContentID");
-
-                    b.ToTable("Content");
-                });
-
-            modelBuilder.Entity("OnlineEclub.Models.Group", b =>
-                {
-                    b.Property<int>("GroupID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryID");
-
-                    b.Property<int>("ContentID");
-
-                    b.Property<string>("GroupTitle");
-
-                    b.Property<int>("MemberLimit");
-
-                    b.Property<int>("MemberMin");
-
-                    b.HasKey("GroupID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.HasIndex("ContentID");
-
-                    b.ToTable("Group");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -277,19 +228,6 @@ namespace OnlineEclub.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("OnlineEclub.Models.Group", b =>
-                {
-                    b.HasOne("OnlineEclub.Models.Category", "Category")
-                        .WithMany("Groups")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OnlineEclub.Models.Content", "Content")
-                        .WithMany("Groups")
-                        .HasForeignKey("ContentID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

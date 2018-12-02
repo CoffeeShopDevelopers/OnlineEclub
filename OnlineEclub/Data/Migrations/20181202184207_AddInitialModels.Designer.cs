@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineEclub.Data;
 
 namespace OnlineEclub.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181202184207_AddInitialModels")]
+    partial class AddInitialModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,9 +218,9 @@ namespace OnlineEclub.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryID");
+                    b.Property<int?>("CategoryID");
 
-                    b.Property<int>("ContentID");
+                    b.Property<int?>("ContentID");
 
                     b.Property<string>("GroupTitle");
 
@@ -284,13 +286,11 @@ namespace OnlineEclub.Data.Migrations
                 {
                     b.HasOne("OnlineEclub.Models.Category", "Category")
                         .WithMany("Groups")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CategoryID");
 
                     b.HasOne("OnlineEclub.Models.Content", "Content")
                         .WithMany("Groups")
-                        .HasForeignKey("ContentID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ContentID");
                 });
 #pragma warning restore 612, 618
         }
