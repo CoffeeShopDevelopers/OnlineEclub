@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using OnlineEclub.Data;
 using OnlineEclub.Models;
@@ -44,6 +45,7 @@ namespace OnlineEclub.Controllers
         }
 
         // GET: Category/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -52,6 +54,7 @@ namespace OnlineEclub.Controllers
         // POST: Category/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryID,CategoryTitle")] Category category)
@@ -66,6 +69,7 @@ namespace OnlineEclub.Controllers
         }
 
         // GET: Category/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,6 +88,7 @@ namespace OnlineEclub.Controllers
         // POST: Category/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryID,CategoryTitle")] Category category)
@@ -117,6 +122,7 @@ namespace OnlineEclub.Controllers
         }
 
         // GET: Category/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +141,7 @@ namespace OnlineEclub.Controllers
         }
 
         // POST: Category/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

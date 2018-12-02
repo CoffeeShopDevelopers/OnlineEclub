@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using OnlineEclub.Data;
 using OnlineEclub.Models;
@@ -48,6 +49,7 @@ namespace OnlineEclub.Controllers
         }
 
         // GET: Group/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["CategoryID"] = new SelectList(_context.Category, "CategoryID", "CategoryID");
@@ -58,6 +60,7 @@ namespace OnlineEclub.Controllers
         // POST: Group/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("GroupID,GroupTitle,CategoryID,ContentID,MemberMin,MemberLimit")] Group @group)
@@ -74,6 +77,7 @@ namespace OnlineEclub.Controllers
         }
 
         // GET: Group/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -94,6 +98,7 @@ namespace OnlineEclub.Controllers
         // POST: Group/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("GroupID,GroupTitle,CategoryID,ContentID,MemberMin,MemberLimit")] Group @group)
@@ -129,6 +134,7 @@ namespace OnlineEclub.Controllers
         }
 
         // GET: Group/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,6 +155,7 @@ namespace OnlineEclub.Controllers
         }
 
         // POST: Group/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
