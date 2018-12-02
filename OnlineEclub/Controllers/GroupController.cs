@@ -22,7 +22,8 @@ namespace OnlineEclub.Controllers
         // GET: Group
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Group.Include(@ => @.Category).Include(@ => @.Content);
+            //var applicationDbContext = _context.Group.Include(@ => @.Category).Include(@ => @.Content);  //Removing until we learn more.
+            var applicationDbContext = _context.Group;
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,8 +36,8 @@ namespace OnlineEclub.Controllers
             }
 
             var @group = await _context.Group
-                .Include(@ => @.Category)
-                .Include(@ => @.Content)
+                //.Include(@ => @.Category)  //Removing until we learn more.
+                //.Include(@ => @.Content)
                 .FirstOrDefaultAsync(m => m.GroupID == id);
             if (@group == null)
             {
@@ -136,8 +137,8 @@ namespace OnlineEclub.Controllers
             }
 
             var @group = await _context.Group
-                .Include(@ => @.Category)
-                .Include(@ => @.Content)
+                //.Include(@ => @.Category)  //Removing until we learn more.
+                //.Include(@ => @.Content)
                 .FirstOrDefaultAsync(m => m.GroupID == id);
             if (@group == null)
             {
